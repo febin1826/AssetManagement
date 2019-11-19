@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <!-- Links -->
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <!--a routerLink="employees" class="nav-link" routerLinkActive="active">Employee List</a-->
+            <a href="create" class="nav-link" routerLinkActive="active">Add Asset</a>
+        </li>
+        <li class="nav-item">
+            <!--a routerLink="edit/:id" class="nav-link" routerLinkActive="active">Edit asset</a-->
+        </li>
+        <li class="nav-item">
+            <a href="assets" class="nav-link" routerLinkActive="active">Get Assets</a>
+        </li>
+        <li class="nav-item">
+            <a href="login" class="nav-link" routerLinkActive="active">LogOut</a>
+        </li>
+    </ul>
+</nav>
+  <div class="card">
+      <div class="card-body">
+        <form [formGroup]="assetForm" novalidate (ngSubmit)="updateAsset()">
+           <div class="form-group">
+                      <!--label class="col-md-4">asset ID</label-->
+                      <input type="hidden" class="form-control" 
+                        formControlName="ad_id" 
+                        #ad_id 
+                        [(ngModel)] = "asset.ad_id"/>
+          </div>  
+          <div class="form-group">
+            <label class="col-md-4">asset Name</label>
+            <input type="text" class="form-control" 
+              formControlName="ad_name" 
+              #ad_name 
+              [(ngModel)] = "asset.ad_name"/>
+          </div>
+          <div *ngIf="assetForm.controls['ad_name'].invalid && (assetForm.controls['ad_name'].dirty || assetForm.controls['ad_name'].touched)" class="alert alert-danger">
+            <div *ngIf="assetForm.controls['ad_name'].errors.required">
+              asset Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4">asset Description </label>
+            <textarea class="form-control" rows = 7 cols = "5"
+            formControlName="assetdesc" 
+            #assetdesc [(ngModel)] = "asset.assetdesc"></textarea>
+          </div>
+          <div *ngIf="assetForm.controls['assetdesc'].invalid && (assetForm.controls['assetdesc'].dirty || assetForm.controls['assetdesc'].touched)" class="alert alert-danger">
+            <div *ngIf="assetForm.controls['assetdesc'].errors.required">
+              asset Description is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4">asset Price</label>
+            <input type="text" class="form-control" 
+              formControlName="assetprice" 
+              #assetprice
+              [(ngModel)] = "asset.assetprice"
+            />
+          </div>
+          <div *ngIf="assetForm.controls['assetprice'].invalid && (assetForm.controls['assetprice'].dirty || assetForm.controls['assetprice'].touched)" class="alert alert-danger">
+            <div *ngIf="assetForm.controls['assetprice'].errors.required">
+              asset Price is required.
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="Date">Manufacturing Date</label>
+              <input #assetdate [(ngModel)]="asset.assetdateStr" type="date" class="form-control" formControlName="assetdate">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary"
+            [disabled]="assetForm.invalid" >
+              Update asset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
