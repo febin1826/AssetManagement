@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private locationStrategy: LocationStrategy) {
+    history.pushState(null,null,window.location.href);
+    this.locationStrategy.onPopState(()=>{
+      history.pushState(null,null,window.location.href);
+    });
+   }
 
   ngOnInit() {
   }

@@ -14,23 +14,34 @@ export class AssetDefService {
     return this.http.get(this.baseUrl + '/asset_def');
   }
   deleteAsset(id: number): Observable<any> {
-    return this.http.delete(this.baseUrl + '/asset_def/'+id);
+    return this.http.delete(this.baseUrl + '/asset_def/' + id);
   }
-  getAsset(id: number):Observable<any>
-  {
-    return this.http.get(this.baseUrl+'/asset_def/'+id);
+  getAsset(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/asset_def/' + id);
   }
-  updateAsset(id: number,asset: AssetDef)
-  {
-    return this.http.put(this.baseUrl+'/asset_def/'+id,asset);
+  updateAsset(id: number, asset: AssetDef) {
+    return this.http.put(this.baseUrl + '/asset_def/' + id, asset);
   }
-  addAsset(ast:AssetDef)
-  {
-    return this.http.post(this.baseUrl+'/asset_def/',ast);
+  addAsset(ast: AssetDef) {
+    return this.http.post(this.baseUrl + '/asset_def/', ast);
   }
-  searchAsset(name:string):Observable<any>
-  {
-    return this.http.get(this.baseUrl+'/assets?name=/'+name);
+  searchAsset(ad_name: string): Observable<any> {
+    return this.http.get(this.baseUrl + '/asset_def?name=' + ad_name);
   }
+  getAssetType(): Observable<any> {
+    return this.http.get(this.baseUrl + '/asset_type');
+  }
+  getAssetTypes(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/asset_type');
+  }
+
+ 
+ // getAsset_def(name: string): Observable<any> {
+    //return this.http.get(this.baseUrl + '/asset_def?na=' + name);
+ // }
+  //putAsset_def(id: number, asset: AssetDef): Observable<any> {
+   // return this.http.put(this.baseUrl + '/asset_def/' + id, asset);
+ // }
+
 }
 

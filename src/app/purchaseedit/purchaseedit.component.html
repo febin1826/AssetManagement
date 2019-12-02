@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+
+            <a href="user" class="nav-link" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+            <a href="plist" class="nav-link" routerLinkActive="active">View Orders</a>
+        </li>
+        <li class="nav-item">
+            <a href="pmanager" class="nav-link" routerLinkActive="active">Place Orders</a>
+        </li>
+        <!--li class="nav-item">
+            <a href="login" class="nav-link" routerLinkActive="active">LogOut</a>
+        </li-->
+
+    </ul>
+</nav>
+<div class="card">
+    <div class="card-body">
+
+        <form [formGroup]="purchaseForm" novalidate (ngSubmit)="updatePurchase()">
+            <div>
+                <input type="hidden" [(ngModel)]="purchase.pd_id" readonly="true" class="form-control"
+                    formControlName="pd_id" #pd_id />
+            </div>
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Order Number</label>
+                <input type="text" [(ngModel)]="purchase.pd_order_no" readonly="true" class="form-control"
+                    formControlName="pd_order_no" #pd_order_no />
+            </div>
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Asset Name</label>
+                <input type="text" [(ngModel)]="purchase.assetname" readonly="true" class="form-control"
+                    formControlName="assetname" #pd_ad_id />
+            </div>
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Vendor Name</label>
+                <input type="text" [(ngModel)]="purchase.vendor_name" readonly="true" class="form-control"
+                    formControlName="vendor_name" #pd_vendor_id />
+            </div>
+
+
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Asset Type</label>
+                <input type="text" readonly="true" [(ngModel)]="purchase.assettype" readonly="true"
+                    class="form-control" formControlName="assettype" #pd_type_id />
+            </div>
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Quantity</label>
+                <input type="text" [(ngModel)]="purchase.pd_qty" readonly="true" class="form-control"
+                    formControlName="pd_qty" #pd_qty />
+            </div>
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Status</label>
+                <input type="text" [(ngModel)]="purchase.pd_status" readonly="true" class="form-control"
+                    formControlName="pd_status" #pd_status />
+            </div>
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Order Date</label>
+                <input type="date" [(ngModel)]="purchase.pd_odateStr" readonly="true" class="form-control"
+                    formControlName="pd_odate" #pd_odateStr />
+            </div>
+
+            <div [ngClass]="form-group">
+                <label class="col-md-4">Delivery Date</label>
+                <input type="date" [(ngModel)]="purchase.pd_ddateStr" class="form-control" formControlName="pd_ddate"
+                    #pd_ddateStr />
+            </div>
+            <div *ngIf="purchaseForm.controls['pd_ddate'].invalid && (purchaseForm.controls['pd_ddate'].dirty || purchaseForm.controls['pd_ddate'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="purchaseForm.controls['pd_ddate'].errors.required">
+                    Delivery Date is required.
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="purchaseForm.pristine || purchaseForm.invalid">
+                    Update Order
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
